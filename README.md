@@ -57,7 +57,7 @@ terraform apply
 bash scripts/trigger-events.sh
 ```
 
-The script creates a test resource group called `sentlab-test-rg`, gives you the Reader role on it, tries to read a few resource groups that do not exist, and deletes the test group again. It only touches that group. On Windows, run it from Git Bash (the script turns off Git Bash's path conversion, which otherwise breaks the `--scope` argument).
+The script creates a test resource group called `sentlab-test-rg`, gives you the Reader role on it, tries to read a few resource groups that do not exist, and deletes the test group again. Reading is not logged in the Activity Log, so the read step does not trigger any rule (see "What I learned"). It only touches that group. On Windows, run it from Git Bash (the script turns off Git Bash's path conversion, which otherwise breaks the `--scope` argument).
 
 Wait 10 to 20 minutes. The Activity Log reaches the workspace after a few minutes, and the rules run every five minutes. Then look at the incidents. Microsoft has moved the Incidents page from the Azure portal to the Defender portal (`security.microsoft.com`, under Investigation & response). You can also check that the data arrived in **Logs** in Sentinel:
 
