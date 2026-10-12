@@ -1,0 +1,6 @@
+AzureActivity
+| where OperationNameValue in~ (
+    "MICROSOFT.AUTHORIZATION/POLICYASSIGNMENTS/WRITE",
+    "MICROSOFT.AUTHORIZATION/POLICYASSIGNMENTS/DELETE")
+| where ActivityStatusValue in~ ("Success", "Succeeded")
+| project TimeGenerated, Caller, CallerIpAddress, OperationNameValue, _ResourceId

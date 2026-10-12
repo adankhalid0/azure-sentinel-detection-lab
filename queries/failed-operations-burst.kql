@@ -1,0 +1,5 @@
+AzureActivity
+| where ActivityStatusValue =~ "Failure"
+| summarize FailedOperations = count(), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated)
+    by Caller, CallerIpAddress, bin(TimeGenerated, 10m)
+| where FailedOperations >= 5
